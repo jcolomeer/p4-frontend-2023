@@ -1,0 +1,68 @@
+:root {
+  --bg-black: #272727;
+  --title-font: "Oswald", sans-serif;
+  --nav-font: "Montserrat", sans-serif;
+  --txt-white: whitesmoke;
+  --unselected-color: rgba(255, 255, 255, 0.605);
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background-color: var(--bg-black);
+  padding: 0 1rem;
+  font-family: var(--nav-font);
+}
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 60px;
+}
+h1 {
+  color: var(--txt-white);
+  font-family: var(--title-font);
+  font-size: 16pt;
+  text-transform: uppercase;
+}
+header nav {
+  display: flex;
+  gap: 2rem;
+  margin: 0 auto 0 2rem;
+}
+header button {
+  background-color: transparent;
+  color: var(--txt-white);
+  border: none;
+}
+header button h2 {
+  font-weight: 50;
+  font-size: 12pt;
+  border-bottom: transparent;
+  color: var(--unselected-color);
+  font-family: var(--nav-font);
+}
+header h2:hover {
+  cursor: pointer;
+  color: var(--txt-white);
+}
+header img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+header span {
+  display: block;
+  color: var(--unselected-color);
+  font-size: 10pt;
+}
+header img:hover,
+header img:hover + span,
+header span:hover {
+  color: var(--txt-white);
+  cursor: pointer;
+}
