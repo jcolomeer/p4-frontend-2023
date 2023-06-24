@@ -3,7 +3,7 @@
   --title-font: "Oswald", sans-serif;
   --nav-font: "Montserrat", sans-serif;
   --txt-white: whitesmoke;
-  --unselected-color: rgba(255, 255, 255, 0.605);
+  --unselected-color: #ffffff9a;
 }
 *,
 *::before,
@@ -19,6 +19,7 @@ body {
 header {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   height: 60px;
 }
@@ -31,7 +32,7 @@ h1 {
 header nav {
   display: flex;
   gap: 2rem;
-  margin: 0 auto 0 2rem;
+  margin: 0 0 0 2rem;
 }
 header button {
   background-color: transparent;
@@ -49,20 +50,12 @@ header h2:hover {
   cursor: pointer;
   color: var(--txt-white);
 }
-header img {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  margin-right: 0.5rem;
-}
-header span {
-  display: block;
+
+.profileClickable {
   color: var(--unselected-color);
-  font-size: 10pt;
 }
-header img:hover,
-header img:hover + span,
-header span:hover {
-  color: var(--txt-white);
+
+.profileClickable:hover {
   cursor: pointer;
+  color: var(--txt-white);
 }
