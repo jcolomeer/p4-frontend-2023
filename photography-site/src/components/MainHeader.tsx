@@ -1,6 +1,10 @@
+import { User } from "../pages/MainPage";
 import UserHandleCard from "./UserHandleCard";
-import ImageCollectionCard from "./ImageCollectionCard";
-export default function MainHeader() {
+
+type Props = {
+  loggedUser: User;
+};
+export default function MainHeader({ loggedUser }: Props) {
   return (
     <>
       <header>
@@ -14,18 +18,11 @@ export default function MainHeader() {
           </button>
         </nav>
         <UserHandleCard
-          url="https://randomuser.me/api/"
+          user={loggedUser}
           imageSize="30px"
           fontSize="10pt"
         ></UserHandleCard>
       </header>
-      <main>
-        <ImageCollectionCard></ImageCollectionCard>
-        <ImageCollectionCard></ImageCollectionCard>
-        <ImageCollectionCard></ImageCollectionCard>
-        <ImageCollectionCard></ImageCollectionCard>
-        <ImageCollectionCard></ImageCollectionCard>
-      </main>
     </>
   );
 }

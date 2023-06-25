@@ -1,9 +1,9 @@
 import "./App.css";
-import MainHeader from "./components/MainHeader";
+import MainPage from "./pages/MainPage";
 export default function App() {
   return (
     <>
-      <MainHeader></MainHeader>
+      <MainPage />
     </>
   );
 }

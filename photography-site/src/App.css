@@ -51,11 +51,37 @@ header h2:hover {
   color: var(--txt-white);
 }
 
-.profileClickable {
+.profileClickable,
+.collectionClickable,
+span {
   color: var(--unselected-color);
 }
 
-.profileClickable:hover {
+.profileClickable:hover,
+.collectionClickable:hover {
   cursor: pointer;
   color: var(--txt-white);
+}
+.thumbnail {
+  position: relative;
+  width: 240px;
+  border-radius: 5px;
+}
+
+.thumbnailWrapper:hover {
+  cursor: pointer;
+  border: solid rgb(245, 245, 245) 1pt;
+}
+.gridLayout {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-items: center;
+  padding: 0 40px;
+}
+.thumbnailWrapper {
+  display: grid;
+  grid-template-columns: min-content min-content;
+  gap: 1rem;
+  border: solid transparent 1pt;
+  border-radius: 5px;
 }
