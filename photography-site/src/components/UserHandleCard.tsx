@@ -14,7 +14,6 @@ export default function UserHandleCard({ url, imageSize, fontSize }: Props) {
     const response = await fetch(url);
     const { results } = await response.json();
     setUser(results[0]);
-    console.log(results[0]);
   }
 
   useEffect(() => {
