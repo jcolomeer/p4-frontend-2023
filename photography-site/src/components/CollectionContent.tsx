@@ -28,15 +28,26 @@ export default function CollectionContent({
   } else {
     return (
       <>
-        <header>
+        <header
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            padding: "2rem",
+            height: "fit-content",
+          }}
+        >
           <UserHandleCard
-            fontSize="10pt"
-            imageSize="30px"
+            fontSize="8pt"
+            imageSize="24px"
             user={user}
           ></UserHandleCard>
-          <h3>{collectionName}</h3>
+
+          <h3 style={{ color: "whitesmoke", margin: "0", fontSize: "16pt" }}>
+            {collectionName}
+          </h3>
         </header>
-        <div className="imageLayout">
+        <main className="imageLayout">
           {imageLinks.map((imageLink: ImageLink, index: number) => {
             return (
               <img
@@ -51,7 +62,7 @@ export default function CollectionContent({
               />
             );
           })}
-        </div>
+        </main>
       </>
     );
   }

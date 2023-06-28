@@ -32,7 +32,10 @@ export default function ImageCollectionCard({
           fontSize="10pt"
         ></UserHandleCard>
         <span>-</span>
-        <Link to={`collection/${collectionId}`}>
+        <Link
+          to={`collection/${collectionId}`}
+          style={{ textDecoration: "none" }}
+        >
           <span
             className="collectionClickable"
             style={{
