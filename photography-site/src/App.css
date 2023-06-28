@@ -85,3 +85,10 @@ span {
   border: solid transparent 1pt;
   border-radius: 5px;
 }
+
+.imageLayout {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-items: center;
+  gap: 1rem;
+}

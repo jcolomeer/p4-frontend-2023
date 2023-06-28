@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import ImageCollectionCard from "../components/ImageCollectionCard";
-import MainHeader from "../components/MainHeader";
-import Footer from "../components/Footer";
+import MainLayout from "../components/MainLayout";
 
 export type User = Record<string, any>;
 
 type Collection = {
   title: string;
+  id: string;
 };
 type ImageData = {
   src: {
@@ -18,10 +18,10 @@ const apiKey = import.meta.env.VITE_PEXELS_API_KEY;
 
 export default function MainPage() {
   const [users, setUsers] = useState<Array<User>>();
-  const [imageLinks, setImageLinks] = useState<Array<Array<string>>>();
-  const [collectionNames, setCollectionNames] = useState<Array<string>>();
+  const [thumbnailLinks, setThumbnailLinks] = useState<Array<Array<string>>>();
+  const [collectionInfo, setCollectionInfo] = useState<Array<Collection>>();
 
-  async function fetchImages() {
+  async function fetchThumbnails() {
     const collectionLinks = [];
     const response = await fetch(
       "https://api.pexels.com/v1/collections/featured?per_page=6",
@@ -32,8 +32,10 @@ export default function MainPage() {
       }
     );
     const { collections } = await response.json();
-    setCollectionNames(
-      collections.map((collection: Collection) => collection.title)
+    setCollectionInfo(
+      collections.map((collection: Collection): Collection => {
+        return { title: collection.title, id: collection.id };
+      })
     );
     for (let collection of collections) {
       const mediaResponse = await fetch(
@@ -49,7 +51,7 @@ export default function MainPage() {
       collectionLinks.push(links);
     }
 
-    setImageLinks(collectionLinks);
+    setThumbnailLinks(collectionLinks);
   }
 
   async function fetchUser(url: string) {
@@ -59,52 +61,57 @@ export default function MainPage() {
   }
 
   useEffect(() => {
-    fetchUser("https://randomuser.me/api/?results=7");
-    fetchImages();
-    console.log();
+    fetchUser("https://randomuser.me/api/?results=6");
+    fetchThumbnails();
   }, []);
 
-  if (!users || !imageLinks || !collectionNames) {
+  if (!users || !thumbnailLinks || !collectionInfo) {
     return <></>;
   } else {
     return (
       <>
-        <MainHeader loggedUser={users[0]} />
-        <main>
-          <section className="gridLayout">
-            <ImageCollectionCard
-              user={users[1]}
-              imageLinks={imageLinks[0]}
-              collectionName={collectionNames[0]}
-            />
-            <ImageCollectionCard
-              user={users[2]}
-              imageLinks={imageLinks[1]}
-              collectionName={collectionNames[1]}
-            />
-            <ImageCollectionCard
-              user={users[3]}
-              imageLinks={imageLinks[2]}
-              collectionName={collectionNames[2]}
-            />
-            <ImageCollectionCard
-              user={users[4]}
-              imageLinks={imageLinks[3]}
-              collectionName={collectionNames[3]}
-            />
-            <ImageCollectionCard
-              user={users[5]}
-              imageLinks={imageLinks[4]}
-              collectionName={collectionNames[4]}
-            />
-            <ImageCollectionCard
-              user={users[6]}
-              imageLinks={imageLinks[5]}
-              collectionName={collectionNames[5]}
-            />
-          </section>
-        </main>
-        <Footer />
+        <MainLayout>
+          <main>
+            <section className="gridLayout">
+              <ImageCollectionCard
+                user={users[0]}
+                imageLinks={thumbnailLinks[0]}
+                collectionName={collectionInfo[0].title}
+                collectionId={collectionInfo[0].id}
+              />
+              <ImageCollectionCard
+                user={users[1]}
+                imageLinks={thumbnailLinks[1]}
+                collectionName={collectionInfo[1].title}
+                collectionId={collectionInfo[1].id}
+              />
+              <ImageCollectionCard
+                user={users[2]}
+                imageLinks={thumbnailLinks[2]}
+                collectionName={collectionInfo[2].title}
+                collectionId={collectionInfo[2].id}
+              />
+              <ImageCollectionCard
+                user={users[3]}
+                imageLinks={thumbnailLinks[3]}
+                collectionName={collectionInfo[3].title}
+                collectionId={collectionInfo[3].id}
+              />
+              <ImageCollectionCard
+                user={users[4]}
+                imageLinks={thumbnailLinks[4]}
+                collectionName={collectionInfo[4].title}
+                collectionId={collectionInfo[4].id}
+              />
+              <ImageCollectionCard
+                user={users[5]}
+                imageLinks={thumbnailLinks[5]}
+                collectionName={collectionInfo[5].title}
+                collectionId={collectionInfo[5].id}
+              />
+            </section>
+          </main>
+        </MainLayout>
       </>
     );
   }

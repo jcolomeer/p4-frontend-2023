@@ -1,16 +1,19 @@
 import UserHandleCard from "./UserHandleCard";
 import { User } from "../pages/MainPage";
+import { Link } from "react-router-dom";
 
 type Props = {
   user: User;
   imageLinks: string[];
   collectionName: string;
+  collectionId: string;
 };
 
 export default function ImageCollectionCard({
   user,
   imageLinks,
   collectionName,
+  collectionId,
 }: Props) {
   return (
     <section>
@@ -29,22 +32,25 @@ export default function ImageCollectionCard({
           fontSize="10pt"
         ></UserHandleCard>
         <span>-</span>
-        <span
-          className="collectionClickable"
-          style={{
-            fontSize: "10pt",
-          }}
-        >
-          {collectionName}
-        </span>
+        <Link to={`collection/${collectionId}`}>
+          <span
+            className="collectionClickable"
+            style={{
+              fontSize: "10pt",
+            }}
+          >
+            {collectionName}
+          </span>
+        </Link>
       </header>
-
-      <div className="thumbnailWrapper">
-        <img src={imageLinks[0]} alt="img1" className="thumbnail" />
-        <img src={imageLinks[1]} alt="img2" className="thumbnail" />
-        <img src={imageLinks[2]} alt="img3" className="thumbnail" />
-        <img src={imageLinks[3]} alt="img4" className="thumbnail" />
-      </div>
+      <Link to={`collection/${collectionId}`}>
+        <div className="thumbnailWrapper">
+          <img src={imageLinks[0]} alt="img1" className="thumbnail" />
+          <img src={imageLinks[1]} alt="img2" className="thumbnail" />
+          <img src={imageLinks[2]} alt="img3" className="thumbnail" />
+          <img src={imageLinks[3]} alt="img4" className="thumbnail" />
+        </div>
+      </Link>
     </section>
   );
 }
