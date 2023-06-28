@@ -23,6 +23,8 @@ export default function CollectionPage() {
     );
     const { id, media } = await response.json();
     setCollectionName(id);
+    //con la api no puedo acceder al nombre de la colección
+    //llamando a una colección concreta así que he puesto el id como título
     const links = media.map((image: Image) => {
       return { link: image.src.large2x, id: image.id };
     });
